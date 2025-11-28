@@ -1,5 +1,6 @@
 import { faker as f } from "@faker-js/faker";
 
+
 const brands = [
   "Nike",
   "Adidas",
@@ -41,7 +42,6 @@ const materials = [
   "canvas",
 ];
 
-
 const colors = [
   "black",
   "white",
@@ -80,9 +80,12 @@ const adjectives = [
   "stretchy",
 ];
 
-const iterate = [...Array(200)];
+const iteration = [...Array(200)];
 
-const data = iterate.map(() => {
+/**
+ * Create an array of objects for JSON data
+ */
+const data = iteration.map(() => {
   const brand = f.helpers.arrayElement(brands);
   const product = f.helpers.arrayElement(products);
   const name = f.commerce.productName();

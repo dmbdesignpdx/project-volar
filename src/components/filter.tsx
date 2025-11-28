@@ -22,8 +22,9 @@ import { SkeletonIds, Label } from "@/constants";
 // Data
 import source from "../data/products.json";
 
-
-const columns = [
+// Local
+const inputName = "filter";
+const columnBreaks = [
   1,
   null,
   2,
@@ -32,7 +33,7 @@ const columns = [
 
 
 async function formAction(state: ProductResponse, formData: FormData) {
-  const body = formData.get("filter");
+  const body = formData.get(inputName);
 
   if (typeof body !== "string") return null;
 
@@ -79,7 +80,7 @@ export function Filter() {
         <form action={action}>
           <Input
             type="text"
-            name="filter"
+            name={inputName}
             placeholder={Label.INPUT}
             disabled={false}
             autoComplete="off"
@@ -88,14 +89,14 @@ export function Filter() {
             type="submit"
             loading={isPending}
           >
-            Filter
+            {Label.FILTER}
           </Button>
           <Button
             type="submit"
             formAction={() => void action(new FormData())}
             disabled={!data}
           >
-            Reset
+            {Label.RESET}
           </Button>
         </form>
       </Flex>
@@ -112,7 +113,7 @@ export function Filter() {
       >
         <SimpleGrid
           gap="4"
-          columns={columns}
+          columns={columnBreaks}
         >
           {isPending
             ? SkeletonIds.map(item => <Skeleton key={item} />)

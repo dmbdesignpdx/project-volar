@@ -1,61 +1,65 @@
 import { Type } from "@google/genai";
 
+
+const Schema = {
+  NAME: "productName",
+  BRAND: "brandName",
+  PRODUCT: "productType",
+  MATERIAL: "material",
+  COLOR: "color",
+  MAX: "maxPrice",
+  MIN: "minPrice",
+  TAGS: "tags",
+} as const;
+
+
 export const responseSchema = {
   type: Type.OBJECT,
   properties: {
-    productName: {
+    [Schema.NAME]: {
       type: Type.ARRAY,
       description: "Possible name(s) of a product, i.e. iPhone",
       items: { type: Type.STRING },
       default: [],
     },
-    brandName: {
+    [Schema.BRAND]: {
       type: Type.ARRAY,
       description: "Possible brand(s) of a product, i.e. Apple",
       items: { type: Type.STRING },
       default: [],
     },
-    productType: {
+    [Schema.PRODUCT]: {
       type: Type.ARRAY,
       description: "Possible types(s) of a product, i.e. phone",
       items: { type: Type.STRING },
       default: [],
     },
-    material: {
+    [Schema.MATERIAL]: {
       type: Type.ARRAY,
       description: "Possible materials(s) of the product, i.e. plastic",
       items: { type: Type.STRING },
       default: [],
     },
-    color: {
+    [Schema.COLOR]: {
       type: Type.ARRAY,
       description: "Possible colors(s) of a product, i.e. spacegray",
       items: { type: Type.STRING },
       default: [],
     },
-    maxPrice: {
+    [Schema.MAX]: {
       type: Type.NUMBER,
       default: 1000,
     },
-    minPrice: {
+    [Schema.MIN]: {
       type: Type.NUMBER,
       default: 0,
     },
-    tags: {
+    [Schema.TAGS]: {
       type: Type.ARRAY,
       description: "Possible descripters of a product, i.e. comfortable, warm",
       items: { type: Type.STRING },
       default: [],
     },
   },
-  required: [
-    "productName",
-    "brandName",
-    "productType",
-    "material",
-    "color",
-    "maxPrice",
-    "minPrice",
-    "tags",
-  ],
+  required: Object.values(Schema),
 };

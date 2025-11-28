@@ -1,5 +1,6 @@
 import type { NextConfig } from "next";
 
+
 const nextConfig: NextConfig = {
   reactCompiler: true,
   experimental: {
@@ -10,5 +11,6 @@ const nextConfig: NextConfig = {
     reactRemoveProperties: true,
   },
 };
+
 
 export default nextConfig;
