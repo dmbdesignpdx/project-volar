@@ -17,7 +17,7 @@ import axios from "axios";
 import { type ProductBody, type ProductResponse } from "@/types/main";
 import { Card } from "@/components/card";
 import { Skeleton } from "@/components/skeleton";
-import { SkeletonIds, Label } from "@/constants";
+import { SkeletonIds, Label, Id } from "@/constants";
 
 // Data
 import source from "../data/products.json";
@@ -84,6 +84,7 @@ export function Filter() {
             placeholder={Label.INPUT}
             disabled={false}
             autoComplete="off"
+            aria-controls={Id.CARD_LIST}
           />
           <Button
             type="submit"
@@ -101,7 +102,10 @@ export function Filter() {
         </form>
       </Flex>
       <Box marginBlockStart={4}>
-        <Text>
+        <Text
+          aria-live="polite"
+          aria-atomic="true"
+        >
           {Label.COUNT}
           {": "}
           <b>{items.length}</b>
@@ -112,6 +116,7 @@ export function Filter() {
         marginBlockStart={4}
       >
         <SimpleGrid
+          id={Id.CARD_LIST}
           gap="4"
           columns={columnBreaks}
         >

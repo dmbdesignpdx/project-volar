@@ -4,6 +4,10 @@ export const SkeletonIds = [
   "sk-3",
 ];
 
+export enum Id {
+  CARD_LIST = "filter-card-list",
+}
+
 export const Meta = {
   TITLE: "Project Volar",
   DESCRIPTION: "Ambitious attempt to create a proof of concept application that "
