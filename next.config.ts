@@ -3,6 +3,9 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   reactCompiler: true,
+  turbopack: {
+    root: __dirname,
+  },
   experimental: {
     optimizePackageImports: ["@chakra-ui/react"],
     cssChunking: true,
