@@ -15,8 +15,8 @@ import axios from "axios";
 
 // Ours
 import { type ProductBody, type ProductResponse } from "@/types/main";
-import { Card } from "./card";
-import { Skeleton } from "./skeleton";
+import { Card } from "@/components/card";
+import { Skeleton } from "@/components/skeleton";
 import { SkeletonIds, Label } from "@/constants";
 
 // Data

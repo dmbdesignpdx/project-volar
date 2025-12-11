@@ -8,6 +8,13 @@ export const Meta = {
   TITLE: "Project Volar",
   DESCRIPTION: "Ambitious attempt to create a proof of concept application that "
     + "uses generative AI to enhance the user experience.",
+  get Page() {
+    return {
+      Filter: {
+        TITLE: this.TITLE + " | Filter Demo",
+      },
+    };
+  },
 } as const;
 
 export const Label = {

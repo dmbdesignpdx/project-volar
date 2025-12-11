@@ -6,7 +6,7 @@ import { Meta, Content } from "@/constants";
 
 
 export const metadata: Metadata = {
-  title: Meta.TITLE + " | Filter Demo",
+  title: Meta.Page.Filter.TITLE,
 };
 
 

@@ -5,7 +5,7 @@ import {
   Badge,
   Tag,
   Wrap,
-  Card as CardBase,
+  Card as ChakraCard,
 } from "@chakra-ui/react";
 
 // Ours
@@ -15,17 +15,17 @@ import { Label } from "@/constants";
 
 export function Card({ ...data }: Product) {
   return (
-    <CardBase.Root
+    <ChakraCard.Root
       as="article"
       bgColor="gray.50"
       opacity={data.inStock ? 1 : 0.666}
       pointerEvents={data.inStock ? "auto" : "none"}
       _hover={{ boxShadow: "md" }}
     >
-      <CardBase.Header>{data.brand}</CardBase.Header>
-      <CardBase.Body>
-        <CardBase.Title>{data.name}</CardBase.Title>
-        <CardBase.Description>{data.color} {data.material} {data.product}</CardBase.Description>
+      <ChakraCard.Header>{data.brand}</ChakraCard.Header>
+      <ChakraCard.Body>
+        <ChakraCard.Title>{data.name}</ChakraCard.Title>
+        <ChakraCard.Description>{data.color} {data.material} {data.product}</ChakraCard.Description>
         <Box
           asChild
           marginBlockStart={2}
@@ -34,9 +34,9 @@ export function Card({ ...data }: Product) {
           <Wrap>
             {data.tags.map(item => (
               <Tag.Root
-                key={data.id + item}
+                key={data.id + item.toLowerCase()}
               >
-                <Tag.Label >{item}</Tag.Label>
+                <Tag.Label>{item}</Tag.Label>
               </Tag.Root>
             ))}
           </Wrap>
@@ -57,7 +57,7 @@ export function Card({ ...data }: Product) {
             {Label.SOLD_OUT}
           </Badge>
         )}
-      </CardBase.Body>
-    </CardBase.Root>
+      </ChakraCard.Body>
+    </ChakraCard.Root>
   );
 }

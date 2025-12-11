@@ -19,6 +19,8 @@ import "./globals.css";
 const stackSansText = Stack_Sans_Text({
   subsets: ["latin"],
   display: "swap",
+  fallback: ["sans-serif"],
+  adjustFontFallback: true,
 });
 
 export const metadata: Metadata = {

@@ -5,7 +5,7 @@ import {
 } from "@chakra-ui/react";
 
 // Ours
-import { Link } from "./link";
+import { Link } from "@/components/link";
 
 
 export function Nav() {

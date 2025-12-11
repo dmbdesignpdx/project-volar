@@ -14,19 +14,20 @@ interface LinkProps {
 
 export function Link({ href, label }: LinkProps) {
   const pathname = usePathname();
+  const isActive = pathname === href;
 
   return (
     <ChakraLink
       asChild
       fontWeight="bold"
-      color={pathname === href ? "blue.600" : undefined}
+      color={isActive ? "blue.600" : undefined}
       inlineSize="100%"
       paddingInline={4}
       paddingBlock={2}
     >
       <NextLink
         href={href}
-        aria-current={pathname === href ? "page" : undefined}
+        aria-current={isActive ? "page" : undefined}
       >
         {label}
       </NextLink>
