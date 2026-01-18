@@ -63,7 +63,7 @@ export default defineConfig(
       "@stylistic/multiline-comment-style": ["error", "starred-block"],
       "@stylistic/multiline-ternary": ["error", "always-multiline"],
       "@stylistic/new-parens": "error",
-      "@stylistic/newline-per-chained-call": ["error", { ignoreChainWithDepth: 1 }],
+      "@stylistic/newline-per-chained-call": ["error", { ignoreChainWithDepth: 2 }],
       "@stylistic/no-confusing-arrow": "error",
       "@stylistic/no-extra-parens": [
         "error",
@@ -191,7 +191,10 @@ export default defineConfig(
           html: true,
         }],
       "@stylistic/jsx-sort-props": "off",
-      "@stylistic/jsx-tag-spacing": ["error", { beforeSelfClosing: "always" }],
+      "@stylistic/jsx-tag-spacing": ["error", {
+        beforeSelfClosing: "always",
+        beforeClosing: "never",
+      }],
       "@stylistic/jsx-wrap-multilines": ["error",
         {
           declaration: "parens-new-line",
@@ -199,8 +202,15 @@ export default defineConfig(
           assignment: "parens-new-line",
         }],
 
+      "@typescript-eslint/no-non-null-assertion": "off",
       "@typescript-eslint/no-empty-object-type": "off",
       "@typescript-eslint/no-require-imports": "off",
+      "@typescript-eslint/no-unused-vars": ["error",
+        {
+          argsIgnorePattern: "_",
+          caughtErrorsIgnorePattern: "_",
+          destructuredArrayIgnorePattern: "_",
+        }],
     },
   },
 );

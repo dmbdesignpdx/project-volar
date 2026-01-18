@@ -6,6 +6,7 @@ import {
 
 // Ours
 import { Link } from "@/components/link";
+import { LINKS } from "@/constants";
 
 
 export function Nav() {
@@ -17,20 +18,17 @@ export function Nav() {
     >
       <Stack as="nav">
         <ul>
-          <Box
-            as="li"
-          >
-            <Link
-              label="Home"
-              href="/"
-            />
-          </Box>
-          <li>
-            <Link
-              label="More"
-              href="/filter"
-            />
-          </li>
+          {LINKS.map(link => (
+            <Box
+              key={link.id}
+              as="li"
+            >
+              <Link
+                label={link.label}
+                href={link.href}
+              />
+            </Box>
+          ))}
         </ul>
       </Stack>
     </Box>

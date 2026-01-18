@@ -3,50 +3,20 @@
 // Theirs
 import { useActionState } from "react";
 import {
-  Input,
-  Button,
-  Flex,
-  SimpleGrid,
   Box,
   Text,
   Stack,
 } from "@chakra-ui/react";
-import axios from "axios";
 
 // Ours
-import { type ProductBody, type ProductResponse } from "@/types/main";
-import { Card } from "@/components/card";
-import { Skeleton } from "@/components/skeleton";
-import { SkeletonIds, Label, Id } from "@/constants";
+import { formAction } from "@/actions/filter";
+import { Result } from "@/components/result";
+import { Input } from "@/components/input";
+import { Label } from "@/constants";
 
 // Data
 import source from "../data/products.json";
 
-// Local
-const inputName = "filter";
-const columnBreaks = [
-  1,
-  null,
-  2,
-  3,
-];
-
-
-async function formAction(state: ProductResponse, formData: FormData) {
-  const body = formData.get(inputName);
-
-  if (typeof body !== "string") return null;
-
-  try {
-    const response = await axios.post<ProductBody>("/api/filter", { body });
-
-    return response.data;
-  } catch (error) {
-    console.error("Error fetching AI response:", error);
-
-    return state;
-  }
-}
 
 export function Filter() {
   const [
@@ -73,34 +43,12 @@ export function Filter() {
 
   return (
     <Stack>
-      <Flex
-        asChild
-        gap="4"
-      >
-        <form action={action}>
-          <Input
-            type="text"
-            name={inputName}
-            placeholder={Label.INPUT}
-            disabled={false}
-            autoComplete="off"
-            aria-controls={Id.CARD_LIST}
-          />
-          <Button
-            type="submit"
-            loading={isPending}
-          >
-            {Label.FILTER}
-          </Button>
-          <Button
-            type="submit"
-            formAction={() => void action(new FormData())}
-            disabled={!data}
-          >
-            {Label.RESET}
-          </Button>
-        </form>
-      </Flex>
+      <Input
+        data={data}
+        isPending={isPending}
+        action={action}
+      />
+      {/* Status */}
       <Box marginBlockStart={4}>
         <Text
           aria-live="polite"
@@ -111,24 +59,11 @@ export function Filter() {
           <b>{items.length}</b>
         </Text>
       </Box>
-      <Box
-        asChild
-        marginBlockStart={4}
-      >
-        <SimpleGrid
-          id={Id.CARD_LIST}
-          gap="4"
-          columns={columnBreaks}
-        >
-          {isPending
-            ? SkeletonIds.map(item => <Skeleton key={item} />)
-            : items.map(item => (
-              <Card
-                key={item.id}
-                {...item}
-              />
-            ))}
-        </SimpleGrid>
+      <Box marginBlockStart={4}>
+        <Result
+          items={items}
+          isPending={isPending}
+        />
       </Box>
     </Stack>
   );

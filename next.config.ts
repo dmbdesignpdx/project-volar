@@ -6,6 +6,7 @@ const nextConfig: NextConfig = {
   turbopack: {
     root: __dirname,
   },
+  devIndicators: false,
   experimental: {
     optimizePackageImports: ["@chakra-ui/react"],
     cssChunking: true,
