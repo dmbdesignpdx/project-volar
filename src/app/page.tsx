@@ -1,7 +1,9 @@
+// Theirs
 import { type Metadata } from "next";
-import { Filter } from "@/components/filter";
 import { Container, Heading } from "@chakra-ui/react";
 
+// Ours
+import { Filter } from "@/components/filter";
 import { Meta, Content } from "@/constants";
 
 

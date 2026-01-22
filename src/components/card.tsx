@@ -19,20 +19,30 @@ interface CardProps extends PropsWithoutRef<Product> {
 }
 
 
-export function Card(props: CardProps) {
+export function Card({
+  id,
+  inStock,
+  name,
+  color,
+  material,
+  price,
+  product,
+  tags,
+  brand,
+}: CardProps) {
   return (
     <ChakraCard.Root
       as="article"
       bgColor="gray.50"
-      opacity={props.inStock ? 1 : 0.666}
-      pointerEvents={props.inStock ? "auto" : "none"}
+      opacity={inStock ? 1 : 0.666}
+      pointerEvents={inStock ? "auto" : "none"}
       _hover={{ boxShadow: "md" }}
     >
-      <ChakraCard.Header>{props.brand}</ChakraCard.Header>
+      <ChakraCard.Header>{brand}</ChakraCard.Header>
       <ChakraCard.Body>
-        <ChakraCard.Title>{props.name}</ChakraCard.Title>
+        <ChakraCard.Title>{name}</ChakraCard.Title>
         <ChakraCard.Description>
-          {props.color} {props.material} {props.product}
+          {color} {material} {product}
         </ChakraCard.Description>
         <Box
           asChild
@@ -40,8 +50,8 @@ export function Card(props: CardProps) {
           marginBlockEnd={4}
         >
           <Wrap>
-            {props.tags.map(item => (
-              <Tag.Root key={props.id + item.toLowerCase()}>
+            {tags.map(item => (
+              <Tag.Root key={item.toLowerCase() + id}>
                 <Tag.Label>{item}</Tag.Label>
               </Tag.Root>
             ))}
@@ -51,9 +61,9 @@ export function Card(props: CardProps) {
           asChild
           marginBlockStart="auto"
         >
-          <Text textStyle="2xl">${props.price}</Text>
+          <Text textStyle="2xl">${price}</Text>
         </Box>
-        {!props.inStock && (
+        {!inStock && (
           <Badge
             colorPalette="red"
             pos="absolute"
