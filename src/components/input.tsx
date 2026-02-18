@@ -31,6 +31,11 @@ export function Input({
 }: InputProps) {
   const [input, setInput] = useState("");
 
+  function resetForm() {
+    setInput("");
+    action(new FormData());
+  }
+
   return (
     <Flex
       asChild
@@ -56,7 +61,7 @@ export function Input({
         </Button>
         <Button
           type="submit"
-          formAction={() => void action(new FormData())}
+          formAction={resetForm}
           disabled={!data}
         >
           {Label.RESET}
