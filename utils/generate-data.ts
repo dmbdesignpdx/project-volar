@@ -8,7 +8,6 @@ const brands = [
   "Columbia",
   "The North Face",
   "Patagonia",
-  "Lululemon",
   "Gap",
   "H&M",
   "Zara",
@@ -30,7 +29,6 @@ const products = [
 ];
 
 const materials = [
-  "silk",
   "cotton",
   "wool",
   "leather",
@@ -80,7 +78,7 @@ const adjectives = [
   "stretchy",
 ];
 
-const iteration = [...Array(200)];
+const iteration = [...Array(300)];
 
 /**
  * Create an array of objects for JSON data
@@ -93,8 +91,7 @@ const data = iteration.map(() => {
   const color = f.helpers.arrayElement(colors);
   const price = f.commerce.price({
     min: 10,
-    max: 500,
-    dec: 2,
+    max: 200,
   });
   const id = f.string.nanoid();
   const inStock = f.datatype.boolean({ probability: 0.8 });
@@ -113,4 +110,4 @@ const data = iteration.map(() => {
   };
 });
 
-Bun.write("./src/data/products.json", JSON.stringify(data, null, 2));
+Bun.write("./src/data/products.json", JSON.stringify(data));
